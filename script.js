@@ -76,7 +76,7 @@ ScrollReveal({
 });
 
 ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
+ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { o0rigin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
 ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
 
@@ -91,3 +91,32 @@ fetch('blogs.json') // JSON file se data fetch kar raha hai
     });
   })
   .catch(error => console.error('Error fetching blogs:', error)); // Agar koi error aaye toh console me dikhaye
+
+document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault(); // Form ko direct submit hone se roko
+
+    let form = this;
+    let formStatus = document.getElementById("form-status");
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+    })
+    .then(response => {
+        if (response.ok) {
+            formStatus.style.display = "block"; // Success message show karna
+            formStatus.style.color = "green";  
+            formStatus.innerText = "✅ Message sent successfully!";
+            form.reset(); // Form clear karna
+        } else {
+            formStatus.style.display = "block"; 
+            formStatus.style.color = "red";
+            formStatus.innerText = "❌ Error sending message.";
+        }
+    })
+    .catch(error => {
+        formStatus.style.display = "block"; 
+        formStatus.style.color = "red";
+        formStatus.innerText = "❌ Network error. Please try again.";
+    });
+});
