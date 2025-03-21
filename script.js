@@ -79,3 +79,15 @@ ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
 ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
+
+fetch('blogs.json') // JSON file se data fetch kar raha hai
+  .then(response => response.json()) // Response ko JSON me convert kar raha hai
+  .then(data => {
+    let blogContainer = document.getElementById('blog-section'); // Blog section ka container le raha hai
+    data.forEach(blog => {
+      let blogDiv = document.createElement('div'); // Naya div create kar raha hai
+      blogDiv.innerHTML = <h3>${blog.title}</h3><p>${blog.description}</p><a href="${blog.link}">Read More</a>;
+      blogContainer.appendChild(blogDiv); // Blog container me add kar raha hai
+    });
+  })
+  .catch(error => console.error('Error fetching blogs:', error)); // Agar koi error aaye toh console me dikhaye
