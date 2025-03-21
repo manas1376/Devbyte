@@ -79,3 +79,35 @@ ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
 ScrollReveal().reveal('.home-img img, .services-container, .portfolio-box, .testimonial-wrapper, .contact form', { origin: 'bottom' });
 ScrollReveal().reveal('.home-content h1, .about-img img', { origin: 'left' });
 ScrollReveal().reveal('.home-content h3, .home-content p, .about-content', { origin: 'right' });
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Default form submit behavior ko rokna
+
+        let form = this;
+        let formStatus = document.getElementById("form-status");
+
+        fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+        })
+        .then(response => response.text())  // Response ko text format me read karna
+        .then(data => {
+            if (data.includes("success") || data.includes("Message sent")) { // Success check karna
+                formStatus.style.display = "block";
+                formStatus.style.color = "green";
+                formStatus.innerText = "✅ Message sent successfully!";
+                form.reset(); // Form clear karna
+            } else {
+                formStatus.style.display = "block";
+                formStatus.style.color = "red";
+                formStatus.innerText = "❌ Error sending message.";
+            }
+        })
+        .catch(error => {
+            formStatus.style.display = "block";
+            formStatus.style.color = "red";
+            formStatus.innerText = "❌ Network error. Please try again.";
+            console.error("Form submission error:", error);
+        });
+    });
+});
