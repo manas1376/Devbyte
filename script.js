@@ -66,7 +66,7 @@ ScrollReveal().reveal(".home-img img, .services-container, .portfolio-box, .test
 ScrollReveal().reveal(".home-content h1, .about-img img", { origin: "left" });
 ScrollReveal().reveal(".home-content h3, .home-content p, .about-content", { origin: "right" });
 
-fetch("blogs.json")
+fetch("https://manas1376.github.io/blogs.json")
   .then((response) => response.json())
   .then((data) => {
     let blogContainer = document.getElementById("blog-section");
