@@ -47,6 +47,25 @@ var swiper = new Swiper(".mySwiper", {
     prevEl: ".swiper-button-prev",
   },
 });
+let darkModeIcon = document.querySelector('#darkMode-icon');
+
+
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    darkModeIcon.classList.add('bx-sun');
+}
+
+darkModeIcon.onclick = () => {
+    document.body.classList.toggle('dark-mode');
+    darkModeIcon.classList.toggle('bx-sun');
+
+  
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+};
 
 let darkModeIcon = document.querySelector("#darkMode-icon");
 
