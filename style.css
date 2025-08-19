@@ -288,11 +288,11 @@ section {
 
 .home-img img {
     position: absolute;
-    bottom: 0;
-    right: 40px;
+    bottom: 36px;
+    right: -84px;
     pointer-events: none;
-    max-width: 480px;
-    max-height: 100vh;
+    max-width: 630px;
+    max-height: 666px;
 }
 
 span {
