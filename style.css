@@ -849,7 +849,7 @@ span {
     }
 
     .about {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
     }
 
@@ -860,6 +860,7 @@ span {
     .about-img img {
         width: 70vw;
         margin-top: -2rem;
+        order: -1;
     }
 
     .testimonial-container .testimonial-wrapper {
