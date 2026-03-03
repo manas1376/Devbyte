@@ -1,2 +1,2 @@
 # Devbyte
-this is main website of Devbyte
+This is main Website of Devbyte
